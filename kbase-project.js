@@ -2,9 +2,9 @@ var jq = document.createElement('script');
 jq.src = "//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js";
 document.querySelector('head').appendChild(jq);
 
-jq.onload = procede;
+jq.onload = proceed;
 
-function procede() {
+function proceed() {
 	getServerInfo();
 	addLinksToArray();
 	var componentSearch = 'https://dev.liferay.com/discover/deployment?p_p_id=3&p_p_lifecycle=0&p_p_state=maximized&p_p_mode=view&_3_struts_action=%2Fsearch%2Fsearch&_3_redirect=%2Fdiscover%2Fdeployment%2F-%2Fknowledge_base&_3_keywords='+dataArray[4]+'&_3_groupId=10184';
