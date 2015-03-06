@@ -142,10 +142,9 @@ function procede() {
 		});
 	});
 
-	function getServerInfo(serverInfo) {
+	function getServerInfo(serverInfo, typeNode) {
 		AUI().use('aui-base', 'node',
 			function(A) {
-				var serverTypeNode =  A.all(".content-column-content");
 				var lrVersionText = 'LIFERAY VERSION: ';
 				var opSystemText = 'OPERATING SYSTEM: ';
 
@@ -157,7 +156,7 @@ function procede() {
 
 				function serverType(serverInfo) {
 					var version = '';
-
+					serverTypeNode = typeNode;
 					serverTypeNode.each(
 						function() {
 							var innerHTML = this.get('innerText');
@@ -181,19 +180,24 @@ function procede() {
 
 					return serverType;
 				}
-				dataArray[dataArray.length] = serverType(applicationServerText);
-				dataArray[dataArray.length] = serverType(dataBaseText);
-				dataArray[dataArray.length] = serverType(lrVersionText);
-				dataArray[dataArray.length] = serverType(opSystemText);	
+				var typeNode = A.all(".content-column-content");
+				dataArray[dataArray.length] = serverType(applicationServerText, typeNode);
+				dataArray[dataArray.length] = serverType(dataBaseText, typeNode);
+				dataArray[dataArray.length] = serverType(lrVersionText, typeNode);
+				dataArray[dataArray.length] = serverType(opSystemText, typeNode);	
+				var typeNode = A.all(".callout-content");
+				dataArray[dataArray.length] = serverType(componentText, typeNode);
 			}
 		);
 	}
 };
 
 var applicationServerText = "APPLICATION SERVER: ";
+var componentText = "COMPONENT: ";
 var dataBaseText = "DATABASE: ";
 var lrVersionText = "LIFERAY VERSION: ";
 var opSystemText = "OPERATING SYSTEM: ";
+
 var dataArray = [];
 
 var floatMenu = document.createElement('div');
@@ -201,10 +205,10 @@ var outterDiv = [];
 var menuItem = [];
 var subMenu = [];
 var categoryNames = [
-	"Compatability Martix",
+	"Compatability Matrix",
 	"Support Policies",
 	"Installation",
-	"Trouble Shooting"
+	"Troubleshooting"
 ];
 
 var arrayofLinks = [];
