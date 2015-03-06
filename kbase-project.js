@@ -7,6 +7,7 @@ jq.onload = proceed;
 function proceed() {
 	getServerInfo();
 	addLinksToArray();
+	dataArray[4] = dataArray[4].replace(' ', '+');
 	var componentSearch = 'https://dev.liferay.com/discover/deployment?p_p_id=3&p_p_lifecycle=0&p_p_state=maximized&p_p_mode=view&_3_struts_action=%2Fsearch%2Fsearch&_3_redirect=%2Fdiscover%2Fdeployment%2F-%2Fknowledge_base&_3_keywords='+dataArray[4]+'&_3_groupId=10184';
 	floatMenu.id = "floatMenu";
 
@@ -25,7 +26,6 @@ function proceed() {
 		var li;
 
 		for (j = 0; j < 4; j++){
-			console.log(arrayofLinks[i]);
 			a = document.createElement('a');
 			a.href=arrayofLinks[i];
 			a.text = "SubMenu Item " + j;
@@ -182,17 +182,47 @@ function proceed() {
 					return serverType;
 				}
 				var typeNode = A.all(".content-column-content");
+				dataArray[dataArray.length] = serverType(lrVersionText, typeNode);
+				dataArray[dataArray.length] = serverType(opSystemText, typeNode);
 				dataArray[dataArray.length] = serverType(applicationServerText, typeNode);
 				dataArray[dataArray.length] = serverType(dataBaseText, typeNode);
-				dataArray[dataArray.length] = serverType(lrVersionText, typeNode);
-				dataArray[dataArray.length] = serverType(opSystemText, typeNode);	
 				var typeNode = A.all(".callout-content");
 				dataArray[dataArray.length] = serverType(componentText, typeNode);
 			}
 		);
 	}
+
+		function getLink(text) {
+		var newIndex =0 ;
+			for (newIndex = 0; newIndex < arrayofLinks.length; newIndex++) {
+				var temp = text;
+				temp = temp.split(" ");
+				temp = temp [0];
+				temp = temp.toLowerCase();
+
+				if (arrayofLinks[newIndex].indexOf(temp) > -1) {
+					return arrayofLinks[newIndex];
+				}
+			}
+			return (arrayofLinks[arrayofLinks.length -1]);
+		}
 };
 
+function addLinksToArray(){
+	var kbBase = "https://dev.liferay.com/discover/deployment/-/knowledge_base/6-2/installing-liferay-on-";
+	arrayofLinks[arrayofLinks.length] = kbBase+"glassfish-4'";
+	arrayofLinks[arrayofLinks.length] = kbBase+"jboss-7-1'";
+	arrayofLinks[arrayofLinks.length] = kbBase+"tomcat-7'";
+	arrayofLinks[arrayofLinks.length] = kbBase+"oracle-weblogic-12c-12-1-2-and-h'";
+	arrayofLinks[arrayofLinks.length] = kbBase+"websphere-8-5'";
+	arrayofLinks[arrayofLinks.length] = "https://dev.liferay.com/discover/portal/-/knowledge_base/6-1/installing-liferay-on-resin-4'";
+	arrayofLinks[arrayofLinks.length] = "https://www.liferay.com/documentation/liferay-portal/6.1/user-guide/-/ai/lp-6-1-ugen11-installing-liferay-on-mule-tcat-0'";
+	arrayofLinks[arrayofLinks.length] = "https://www.liferay.com/community/wiki/-/wiki/Main/tcserver+Configuration+and+Tips'";
+	arrayofLinks[arrayofLinks.length] = "https://www.liferay.com/community/wiki/-/wiki/Main/Database+Portal+Properties#section-Database+Portal+Properties-mysql'";
+	arrayofLinks[arrayofLinks.length] = "https://www.liferay.com/documents/14/21598941/Liferay+Portal+6.2+EE+Compatibility+Matrix.pdf/3b3fd878-c954-4acc-bd5f-19fb7eb78210'";
+}
+
+var arrayofLinks = [];
 var applicationServerText = "APPLICATION SERVER: ";
 var componentText = "COMPONENT: ";
 var dataBaseText = "DATABASE: ";
@@ -211,19 +241,3 @@ var categoryNames = [
 	"Installation",
 	"Troubleshooting"
 ];
-
-var arrayofLinks = [];
-function addLinksToArray(){
-	var kbBase = "https://dev.liferay.com/discover/deployment/-/knowledge_base/6-2/installing-liferay-on-";
-	arrayofLinks[arrayofLinks.length] = kbBase+"glassfish-4'";
-	arrayofLinks[arrayofLinks.length] = kbBase+"jboss-7-1'";
-	arrayofLinks[arrayofLinks.length] = kbBase+"tomcat-7'";
-	arrayofLinks[arrayofLinks.length] = kbBase+"oracle-weblogic-12c-12-1-2-and-h'";
-	arrayofLinks[arrayofLinks.length] = kbBase+"websphere-8-5'";
-	arrayofLinks[arrayofLinks.length] = "https://dev.liferay.com/discover/portal/-/knowledge_base/6-1/installing-liferay-on-resin-4'";
-	arrayofLinks[arrayofLinks.length] = "https://www.liferay.com/documentation/liferay-portal/6.1/user-guide/-/ai/lp-6-1-ugen11-installing-liferay-on-mule-tcat-0'";
-	arrayofLinks[arrayofLinks.length] = "https://www.liferay.com/community/wiki/-/wiki/Main/tcserver+Configuration+and+Tips'";
-	arrayofLinks[arrayofLinks.length] = "https://www.liferay.com/community/wiki/-/wiki/Main/Database+Portal+Properties#section-Database+Portal+Properties-mysql'";
-	arrayofLinks[arrayofLinks.length] = "https://www.liferay.com/documents/14/21598941/Liferay+Portal+6.2+EE+Compatibility+Matrix.pdf/3b3fd878-c954-4acc-bd5f-19fb7eb78210'";
-}
-
