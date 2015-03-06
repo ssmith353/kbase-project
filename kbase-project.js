@@ -8,8 +8,6 @@ function procede() {
 	getServerInfo();
 	addLinksToArray();
 	var componentSearch = 'https://dev.liferay.com/discover/deployment?p_p_id=3&p_p_lifecycle=0&p_p_state=maximized&p_p_mode=view&_3_struts_action=%2Fsearch%2Fsearch&_3_redirect=%2Fdiscover%2Fdeployment%2F-%2Fknowledge_base&_3_keywords='+dataArray[4]+'&_3_groupId=10184';
-	console.log(componentSearch);
-
 	floatMenu.id = "floatMenu";
 
 	for (var i = 0; i < 4; i++) {
@@ -27,9 +25,11 @@ function procede() {
 		var li;
 
 		for (j = 0; j < 4; j++){
+			console.log(arrayofLinks[i]);
 			a = document.createElement('a');
-			a.href='javascript:void(0);';
-			a.innerHTML = a.innerHTML + "SubMenu Item " + j;
+			a.href=arrayofLinks[i];
+			a.text = "SubMenu Item " + j;
+			a.target = '_blank';
 			li = document.createElement('li');
 			li.appendChild(a);
 			subMenu[i].appendChild(li);
@@ -215,15 +215,15 @@ var categoryNames = [
 var arrayofLinks = [];
 function addLinksToArray(){
 	var kbBase = "https://dev.liferay.com/discover/deployment/-/knowledge_base/6-2/installing-liferay-on-";
-	arrayofLinks[arrayofLinks.length] = "<a href='"+kbBase+"glassfish-4' target='_blank'>";
-	arrayofLinks[arrayofLinks.length] = "<a href='"+kbBase+"jboss-7-1' target='_blank'>";
-	arrayofLinks[arrayofLinks.length] = "<a href='"+kbBase+"tomcat-7' target='_blank'>";
-	arrayofLinks[arrayofLinks.length] = "<a href='"+kbBase+"oracle-weblogic-12c-12-1-2-and-h' target='_blank'>";
-	arrayofLinks[arrayofLinks.length] = "<a href='"+kbBase+"websphere-8-5' target='_blank'>";
-	arrayofLinks[arrayofLinks.length] = "<a href='https://dev.liferay.com/discover/portal/-/knowledge_base/6-1/installing-liferay-on-resin-4' target='_blank'>";
-	arrayofLinks[arrayofLinks.length] = "<a href='https://www.liferay.com/documentation/liferay-portal/6.1/user-guide/-/ai/lp-6-1-ugen11-installing-liferay-on-mule-tcat-0' target='_blank'>";
-	arrayofLinks[arrayofLinks.length] = "<a href='https://www.liferay.com/community/wiki/-/wiki/Main/tcserver+Configuration+and+Tips' target='_blank'>";
-	arrayofLinks[arrayofLinks.length] = "<a href='https://www.liferay.com/community/wiki/-/wiki/Main/Database+Portal+Properties#section-Database+Portal+Properties-mysql' target='_blank'>";
-	arrayofLinks[arrayofLinks.length] = "<a href='https://www.liferay.com/documents/14/21598941/Liferay+Portal+6.2+EE+Compatibility+Matrix.pdf/3b3fd878-c954-4acc-bd5f-19fb7eb78210' target='_blank'>";
+	arrayofLinks[arrayofLinks.length] = kbBase+"glassfish-4'";
+	arrayofLinks[arrayofLinks.length] = kbBase+"jboss-7-1'";
+	arrayofLinks[arrayofLinks.length] = kbBase+"tomcat-7'";
+	arrayofLinks[arrayofLinks.length] = kbBase+"oracle-weblogic-12c-12-1-2-and-h'";
+	arrayofLinks[arrayofLinks.length] = kbBase+"websphere-8-5'";
+	arrayofLinks[arrayofLinks.length] = "https://dev.liferay.com/discover/portal/-/knowledge_base/6-1/installing-liferay-on-resin-4'";
+	arrayofLinks[arrayofLinks.length] = "https://www.liferay.com/documentation/liferay-portal/6.1/user-guide/-/ai/lp-6-1-ugen11-installing-liferay-on-mule-tcat-0'";
+	arrayofLinks[arrayofLinks.length] = "https://www.liferay.com/community/wiki/-/wiki/Main/tcserver+Configuration+and+Tips'";
+	arrayofLinks[arrayofLinks.length] = "https://www.liferay.com/community/wiki/-/wiki/Main/Database+Portal+Properties#section-Database+Portal+Properties-mysql'";
+	arrayofLinks[arrayofLinks.length] = "https://www.liferay.com/documents/14/21598941/Liferay+Portal+6.2+EE+Compatibility+Matrix.pdf/3b3fd878-c954-4acc-bd5f-19fb7eb78210'";
 }
 
