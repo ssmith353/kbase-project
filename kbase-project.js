@@ -21,14 +21,41 @@ function proceed() {
 		subMenu[i] = document.createElement('div');
 		subMenu[i].className = 'subMenu';
 
-		var j = 0;
 		var a;
 		var li;
+	
+		var link = '';
+		switch (i) {
+			case 0:
+				if (dataArray[0].indexOf('2') > -1){
+					link = 'https://www.liferay.com/documents/14/21598941/Liferay+Portal+6.2+EE+Compatibility+Matrix.pdf/3b3fd878-c954-4acc-bd5f-19fb7eb78210';
+				} else {
+					link = 'https://www.liferay.com/documents/14/21598941/Liferay+Portal+6.1+EE+Compatibility+Matrix.pdf/fb724548-0d8d-408f-ad01-5acd862c038a';
+				}
+				break;
+			case 1:
+				link = 'https://www.liferay.com/products/liferay-portal/ee/end-of-service-life';
+				break;
+			case 2:				
+				link = getLink(dataArray[2]);
+				break;
+			case 3:
+				link = componentSearch;
+				break;
+		}
 
-		for (j = 0; j < 4; j++){
+		a = document.createElement('a');
+		a.href=link;
+		a.text = "SubMenu Item " + i;
+		a.target = '_blank';
+		li = document.createElement('li');
+		li.appendChild(a);
+		subMenu[i].appendChild(li);
+		if ((categoryNames[i].indexOf('tall') > -1)) {
+			link = "https://www.liferay.com/community/wiki/-/wiki/Main/Database+Portal+Properties";
 			a = document.createElement('a');
-			a.href=arrayofLinks[i];
-			a.text = "SubMenu Item " + j;
+			a.href=link;
+			a.text = "SubMenu Item " + i;
 			a.target = '_blank';
 			li = document.createElement('li');
 			li.appendChild(a);
@@ -42,7 +69,7 @@ function proceed() {
 
 	listDiv.className = "menuList";
 
-	for (var i = 0; i < 4; i++){
+	for (var i = 0; i < 4; i++) {
 		listDiv.appendChild(outterDiv[i]);
 	}
 
@@ -138,7 +165,7 @@ function proceed() {
 	$(function() {
 		$('.menuList').hide();
 		$('.menuHeader').click(function() {
-			$('subMenu').hide();
+			$('.subMenu').hide();
 			$('.menuList').slideToggle(500);
 		});
 	});
@@ -210,16 +237,16 @@ function proceed() {
 
 function addLinksToArray(){
 	var kbBase = "https://dev.liferay.com/discover/deployment/-/knowledge_base/6-2/installing-liferay-on-";
-	arrayofLinks[arrayofLinks.length] = kbBase+"glassfish-4'";
-	arrayofLinks[arrayofLinks.length] = kbBase+"jboss-7-1'";
-	arrayofLinks[arrayofLinks.length] = kbBase+"tomcat-7'";
-	arrayofLinks[arrayofLinks.length] = kbBase+"oracle-weblogic-12c-12-1-2-and-h'";
-	arrayofLinks[arrayofLinks.length] = kbBase+"websphere-8-5'";
-	arrayofLinks[arrayofLinks.length] = "https://dev.liferay.com/discover/portal/-/knowledge_base/6-1/installing-liferay-on-resin-4'";
-	arrayofLinks[arrayofLinks.length] = "https://www.liferay.com/documentation/liferay-portal/6.1/user-guide/-/ai/lp-6-1-ugen11-installing-liferay-on-mule-tcat-0'";
-	arrayofLinks[arrayofLinks.length] = "https://www.liferay.com/community/wiki/-/wiki/Main/tcserver+Configuration+and+Tips'";
-	arrayofLinks[arrayofLinks.length] = "https://www.liferay.com/community/wiki/-/wiki/Main/Database+Portal+Properties#section-Database+Portal+Properties-mysql'";
-	arrayofLinks[arrayofLinks.length] = "https://www.liferay.com/documents/14/21598941/Liferay+Portal+6.2+EE+Compatibility+Matrix.pdf/3b3fd878-c954-4acc-bd5f-19fb7eb78210'";
+	arrayofLinks[arrayofLinks.length] = kbBase+"glassfish-4";
+	arrayofLinks[arrayofLinks.length] = kbBase+"jboss-7-1";
+	arrayofLinks[arrayofLinks.length] = kbBase+"tomcat-7";
+	arrayofLinks[arrayofLinks.length] = kbBase+"oracle-weblogic-12c-12-1-2-and-h";
+	arrayofLinks[arrayofLinks.length] = kbBase+"websphere-8-5";
+	arrayofLinks[arrayofLinks.length] = "https://dev.liferay.com/discover/portal/-/knowledge_base/6-1/installing-liferay-on-resin-4";
+	arrayofLinks[arrayofLinks.length] = "https://www.liferay.com/documentation/liferay-portal/6.1/user-guide/-/ai/lp-6-1-ugen11-installing-liferay-on-mule-tcat-0";
+	arrayofLinks[arrayofLinks.length] = "https://www.liferay.com/community/wiki/-/wiki/Main/tcserver+Configuration+and+Tips";
+	arrayofLinks[arrayofLinks.length] = "https://www.liferay.com/community/wiki/-/wiki/Main/Database+Portal+Properties";
+	arrayofLinks[arrayofLinks.length] = "https://www.liferay.com/documents/14/21598941/Liferay+Portal+6.2+EE+Compatibility+Matrix.pdf/3b3fd878-c954-4acc-bd5f-19fb7eb78210";
 }
 
 var arrayofLinks = [];
