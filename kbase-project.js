@@ -5,27 +5,13 @@ document.querySelector('head').appendChild(jq);
 jq.onload = procede;
 
 function procede() {
-
-	var floatMenu = document.createElement('div');
+	getServerInfo();
+	addLinksToArray();
+	console.log(dataArray);
 
 	floatMenu.id = "floatMenu";
 
-	var outterDiv = [];
-
-	var menuItem = [];
-
-	var subMenu = [];
-
-	var categoryNames = [
-		"Compatability Martix",
-		"Support Policies",
-		"Installation",
-		"Trouble Shooting"
-	];
-
-	var i = 0;
-
-	for (i = 0; i < 4; i++) {
+	for (var i = 0; i < 4; i++) {
 		outterDiv[i] = document.createElement('div');
 
 		menuItem[i] = document.createElement('div');
@@ -55,7 +41,7 @@ function procede() {
 
 	listDiv.className = "menuList";
 
-	for (i = 0; i < 4; i++){
+	for (var i = 0; i < 4; i++){
 		listDiv.appendChild(outterDiv[i]);
 	}
 
@@ -155,4 +141,83 @@ function procede() {
 			$('.menuList').slideToggle(500);
 		});
 	});
+
+	function getServerInfo(serverInfo) {
+		AUI().use('aui-base', 'node',
+			function(A) {
+				var serverTypeNode =  A.all(".content-column-content");
+				var lrVersionText = 'LIFERAY VERSION: ';
+				var opSystemText = 'OPERATING SYSTEM: ';
+
+				var applicationServerText = 'APPLICATION SERVER: ';
+				var jvmText = 'JAVA VIRTUAL MACHINE: ';
+
+				var dataBaseText = 'DATABASE: ';       
+				var browserText = 'PRIMARY BROWSER: ';
+
+				function serverType(serverInfo) {
+					var version = '';
+
+					serverTypeNode.each(
+						function() {
+							var innerHTML = this.get('innerText');
+							if (innerHTML.indexOf(serverInfo) > -1) {
+								version = innerHTML;
+							}
+						}
+					);
+
+					if (version) {
+						var begin = version.indexOf(serverInfo) + serverInfo.length,
+						end = version.indexOf('\n');
+
+						if (serverInfo == opSystemText) {
+							end = version.indexOf('\n') + begin;
+						}
+						version = version.substring(begin, end);
+
+						return version;
+					}
+
+					return serverType;
+				}
+				dataArray[dataArray.length] = serverType(applicationServerText);
+				dataArray[dataArray.length] = serverType(dataBaseText);
+				dataArray[dataArray.length] = serverType(lrVersionText);
+				dataArray[dataArray.length] = serverType(opSystemText);	
+			}
+		);
+	}
 };
+
+var applicationServerText = "APPLICATION SERVER: ";
+var dataBaseText = "DATABASE: ";
+var lrVersionText = "LIFERAY VERSION: ";
+var opSystemText = "OPERATING SYSTEM: ";
+var dataArray = [];
+
+var floatMenu = document.createElement('div');
+var outterDiv = [];
+var menuItem = [];
+var subMenu = [];
+var categoryNames = [
+	"Compatability Martix",
+	"Support Policies",
+	"Installation",
+	"Trouble Shooting"
+];
+
+var arrayofLinks = [];
+function addLinksToArray(){
+	var kbBase = "https://dev.liferay.com/discover/deployment/-/knowledge_base/6-2/installing-liferay-on-";
+	arrayofLinks[arrayofLinks.length] = "<a href='"+kbBase+"glassfish-4' target='_blank'>";
+	arrayofLinks[arrayofLinks.length] = "<a href='"+kbBase+"jboss-7-1' target='_blank'>";
+	arrayofLinks[arrayofLinks.length] = "<a href='"+kbBase+"tomcat-7' target='_blank'>";
+	arrayofLinks[arrayofLinks.length] = "<a href='"+kbBase+"oracle-weblogic-12c-12-1-2-and-h' target='_blank'>";
+	arrayofLinks[arrayofLinks.length] = "<a href='"+kbBase+"websphere-8-5' target='_blank'>";
+	arrayofLinks[arrayofLinks.length] = "<a href='https://dev.liferay.com/discover/portal/-/knowledge_base/6-1/installing-liferay-on-resin-4' target='_blank'>";
+	arrayofLinks[arrayofLinks.length] = "<a href='https://www.liferay.com/documentation/liferay-portal/6.1/user-guide/-/ai/lp-6-1-ugen11-installing-liferay-on-mule-tcat-0' target='_blank'>";
+	arrayofLinks[arrayofLinks.length] = "<a href='https://www.liferay.com/community/wiki/-/wiki/Main/tcserver+Configuration+and+Tips' target='_blank'>";
+	arrayofLinks[arrayofLinks.length] = "<a href='https://www.liferay.com/community/wiki/-/wiki/Main/Database+Portal+Properties#section-Database+Portal+Properties-mysql' target='_blank'>";
+	arrayofLinks[arrayofLinks.length] = "<a href='https://www.liferay.com/documents/14/21598941/Liferay+Portal+6.2+EE+Compatibility+Matrix.pdf/3b3fd878-c954-4acc-bd5f-19fb7eb78210' target='_blank'>";
+}
