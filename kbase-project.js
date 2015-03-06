@@ -11,8 +11,8 @@ function proceed() {
 	dataArray[4] = dataArray[4].replace(' ', '+');
 	var componentSearch = 'https://dev.liferay.com/discover/deployment?p_p_id=3&p_p_lifecycle=0&p_p_state=maximized&p_p_mode=view&_3_struts_action=%2Fsearch%2Fsearch&_3_redirect=%2Fdiscover%2Fdeployment%2F-%2Fknowledge_base&_3_keywords='+dataArray[4]+'&_3_groupId=10184';
 	floatMenu.id = "floatMenu";
-
-	for (var i = 0; i < 4; i++) {
+	var i = 0;
+	for (i = 0; i < 4; i++) {
 		outterDiv[i] = document.createElement('div');
 
 		menuItem[i] = document.createElement('div');
@@ -28,7 +28,7 @@ function proceed() {
 		var link = '';
 		switch (i) {
 			case 0:
-				var temp = dataArray[0]
+				var temp = dataArray[0];
 				if (dataArray[0].indexOf('2') > -1){
 					link = 'https://www.liferay.com/documents/14/21598941/Liferay+Portal+6.2+EE+Compatibility+Matrix.pdf/3b3fd878-c954-4acc-bd5f-19fb7eb78210';
 				} else {
@@ -37,8 +37,8 @@ function proceed() {
 				break;
 
 			case 1:
-				var link = 'https://support-kb.liferay.com/web/knowledge/knowledge-base/-/knowledge_base/article/';
-				var temp = dataArray[3]
+				link = 'https://support-kb.liferay.com/web/knowledge/knowledge-base/-/knowledge_base/article/';
+				temp = dataArray[3];
 				switch(dataBase) {
 					case "Oracle":
 						link += '31478';
@@ -65,11 +65,11 @@ function proceed() {
 				break;
 			case 2:				
 				link = getLink(dataArray[2]);
-				var temp = dataArray[2];
+				temp = dataArray[2];
 				break;
 			case 3:
 				link = componentSearch;
-				var temp = "Search KBASE: " + dataArray[4];
+				temp = "Search KBASE: " + dataArray[4];
 				break;
 		}
 
@@ -100,7 +100,7 @@ function proceed() {
 
 	listDiv.className = "menuList";
 
-	for (var i = 0; i < 4; i++) {
+	for (i = 0; i < 4; i++) {
 		listDiv.appendChild(outterDiv[i]);
 	}
 
@@ -115,6 +115,7 @@ function proceed() {
 
 	document.body.appendChild(floatMenu);
 
+	/*jshint multistr: true */
 	var css = "#floatMenu {\
 			position:absolute;\
 			top:15%;\
@@ -244,7 +245,7 @@ function proceed() {
 				dataArray[dataArray.length] = serverType(opSystemText, typeNode);
 				dataArray[dataArray.length] = serverType(applicationServerText, typeNode);
 				dataArray[dataArray.length] = serverType(dataBaseText, typeNode);
-				var typeNode = A.all(".callout-content");
+				typeNode = A.all(".callout-content");
 				dataArray[dataArray.length] = serverType(componentText, typeNode);
 			}
 		);
@@ -264,7 +265,7 @@ function proceed() {
 			}
 			return (arrayofLinks[arrayofLinks.length -1]);
 		}
-};
+}
 
 function addLinksToArray(){
 	var kbBase = "https://dev.liferay.com/discover/deployment/-/knowledge_base/6-2/installing-liferay-on-";
