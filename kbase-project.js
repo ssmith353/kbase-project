@@ -34,7 +34,32 @@ function proceed() {
 				}
 				break;
 			case 1:
-				link = 'https://www.liferay.com/products/liferay-portal/ee/end-of-service-life';
+				var dataBase = dataArray[3].split(' ')[0];
+				var link = 'https://support-kb.liferay.com/web/knowledge/knowledge-base/-/knowledge_base/article/';
+				console.log(dataBase);
+				switch(dataBase) {
+					case "Oracle":
+						link += '31478';
+						break;
+					case "MySQL":
+						link += '31470';
+						break;
+					case "DB2":
+						link += '31688';
+						break;
+					case "PostgreSQL":
+						link += '31644';
+						break;
+					case "Sybase":
+						link += '31656';
+						break;
+					case "SQL":
+						link += '31668';
+						break;
+					case "Hypersonic":
+						link += '15256';
+						break;
+				}
 				break;
 			case 2:				
 				link = getLink(dataArray[2]);
@@ -195,8 +220,8 @@ function proceed() {
 					);
 
 					if (version) {
-						var begin = version.indexOf(serverInfo) + serverInfo.length,
-						end = version.indexOf('\n');
+						var begin = version.indexOf(serverInfo) + serverInfo.length;
+						var end = version.indexOf('\n');
 
 						if (serverInfo == opSystemText) {
 							end = version.indexOf('\n') + begin;
@@ -245,8 +270,6 @@ function addLinksToArray(){
 	arrayofLinks[arrayofLinks.length] = "https://dev.liferay.com/discover/portal/-/knowledge_base/6-1/installing-liferay-on-resin-4";
 	arrayofLinks[arrayofLinks.length] = "https://www.liferay.com/documentation/liferay-portal/6.1/user-guide/-/ai/lp-6-1-ugen11-installing-liferay-on-mule-tcat-0";
 	arrayofLinks[arrayofLinks.length] = "https://www.liferay.com/community/wiki/-/wiki/Main/tcserver+Configuration+and+Tips";
-	arrayofLinks[arrayofLinks.length] = "https://www.liferay.com/community/wiki/-/wiki/Main/Database+Portal+Properties";
-	arrayofLinks[arrayofLinks.length] = "https://www.liferay.com/documents/14/21598941/Liferay+Portal+6.2+EE+Compatibility+Matrix.pdf/3b3fd878-c954-4acc-bd5f-19fb7eb78210";
 }
 
 var arrayofLinks = [];
