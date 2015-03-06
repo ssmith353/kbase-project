@@ -7,7 +7,8 @@ jq.onload = proceed;
 function proceed() {
 	getServerInfo();
 	addLinksToArray();
-	console.log(dataArray);
+	var componentSearch = 'https://dev.liferay.com/discover/deployment?p_p_id=3&p_p_lifecycle=0&p_p_state=maximized&p_p_mode=view&_3_struts_action=%2Fsearch%2Fsearch&_3_redirect=%2Fdiscover%2Fdeployment%2F-%2Fknowledge_base&_3_keywords='+dataArray[4]+'&_3_groupId=10184';
+	console.log(componentSearch);
 
 	floatMenu.id = "floatMenu";
 
@@ -225,3 +226,4 @@ function addLinksToArray(){
 	arrayofLinks[arrayofLinks.length] = "<a href='https://www.liferay.com/community/wiki/-/wiki/Main/Database+Portal+Properties#section-Database+Portal+Properties-mysql' target='_blank'>";
 	arrayofLinks[arrayofLinks.length] = "<a href='https://www.liferay.com/documents/14/21598941/Liferay+Portal+6.2+EE+Compatibility+Matrix.pdf/3b3fd878-c954-4acc-bd5f-19fb7eb78210' target='_blank'>";
 }
+
