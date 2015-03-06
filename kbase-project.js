@@ -16,6 +16,13 @@ function procede() {
 
 	var subMenu = [];
 
+	var categoryNames = [
+		"Compatability Martix",
+	 	"Support Policies",
+	 	"Installation",
+	 	"Trouble Shooting"
+	];
+
 	var i = 0;
 
 	for (i = 0; i < 4; i++) {
@@ -23,7 +30,7 @@ function procede() {
 
 		menuItem[i] = document.createElement('div');
 		menuItem[i].className = 'menuItem';
-		menuItem[i].innerHTML = 'Menu Item';
+		menuItem[i].innerHTML = categoryNames[i];
 
 		subMenu[i] = document.createElement('div');
 		subMenu[i].className = 'subMenu';
@@ -44,19 +51,22 @@ function procede() {
 		outterDiv[i].appendChild(subMenu[i]);
 	}
 
-	var ul = document.createElement('ul');
+	var listDiv = document.createElement('div');
+
+	listDiv.className = "menuList";
 
 	for (i = 0; i < 4; i++){
-		ul.appendChild(outterDiv[i]);
+		listDiv.appendChild(outterDiv[i]);
 	}
 
 	var h3 = document.createElement('h3');
 
+	h3.className = 'menuHeader';
 	h3.innerHTML = "Next Steps";
 
 	floatMenu.appendChild(h3);
 
-	floatMenu.appendChild(ul);
+	floatMenu.appendChild(listDiv);
 
 	document.body.appendChild(floatMenu);
 
@@ -131,10 +141,18 @@ function procede() {
 
 	$(function() {
 		$('.subMenu').hide();
-		$(".menuItem").click(function () {
+		$('.menuItem').click(function () {
 			$menuItem = $(this);
 			$subMenu = $menuItem.next();
 			$subMenu.slideToggle(500);
+		});
+	});
+
+	$(function() {
+		$('.menuList').hide();
+		$('.menuHeader').click(function() {
+			$('subMenu').hide();
+			$('.menuList').slideToggle(500);
 		});
 	});
 };
