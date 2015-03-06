@@ -18,9 +18,9 @@ function procede() {
 
 	var categoryNames = [
 		"Compatability Martix",
-	 	"Support Policies",
-	 	"Installation",
-	 	"Trouble Shooting"
+		"Support Policies",
+		"Installation",
+		"Trouble Shooting"
 	];
 
 	var i = 0;
