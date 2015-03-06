@@ -63,7 +63,7 @@ function procede() {
 	var css = "#floatMenu {\
 			position:absolute;\
 			top:15%;\
-			right:10px;\
+			right:0px;\
 			width:200px;\
 			background-color:#FFF;\
 			margin:0;\
@@ -73,25 +73,27 @@ function procede() {
 			border-right:1px solid #ddd;\
 		}\
 		#floatMenu h3 {\
-			color:white;\
+			color:black;\
 			font-weight:bold;\
 			padding:3px;\
 			margin:0;\
-			background-color:#006;\
+			background-color:#FFF;\
 			border-bottom:1px solid #ddd;\
 			border-top:1px solid #ddd;\
-			font-size:16px; text-align:center;\
+			font-size:18px;\
 		}\
-		#floatMenu ul {\
+		#floatMenu div {\
 			margin:0;\
 			padding:0;\
 			list-style:none;\
 		}\
-		#floatMenu ul div div {\
-			padding-left:10px;\
-			background-color:#f5f5f5;\
+		.menuItem {\
+			background-color:#FFF;\
 			border-bottom:1px solid #ddd;\
 			border-top:1px solid #ddd;\
+			font-size:14px;\
+			font-weight:bold;\
+			padding-left:10px;\
 		}\
 		#floatMenu ul div a {\
 			text-decoration:none;\
