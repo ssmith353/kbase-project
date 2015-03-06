@@ -7,6 +7,7 @@ jq.onload = proceed;
 function proceed() {
 	getServerInfo();
 	addLinksToArray();
+	var dataBase = dataArray[3].split(' ')[0];
 	dataArray[4] = dataArray[4].replace(' ', '+');
 	var componentSearch = 'https://dev.liferay.com/discover/deployment?p_p_id=3&p_p_lifecycle=0&p_p_state=maximized&p_p_mode=view&_3_struts_action=%2Fsearch%2Fsearch&_3_redirect=%2Fdiscover%2Fdeployment%2F-%2Fknowledge_base&_3_keywords='+dataArray[4]+'&_3_groupId=10184';
 	floatMenu.id = "floatMenu";
@@ -34,9 +35,7 @@ function proceed() {
 				}
 				break;
 			case 1:
-				var dataBase = dataArray[3].split(' ')[0];
 				var link = 'https://support-kb.liferay.com/web/knowledge/knowledge-base/-/knowledge_base/article/';
-				console.log(dataBase);
 				switch(dataBase) {
 					case "Oracle":
 						link += '31478';
@@ -85,6 +84,10 @@ function proceed() {
 			li = document.createElement('li');
 			li.appendChild(a);
 			subMenu[i].appendChild(li);
+		}
+		
+		if (i == 1) {
+			a.text = dataBase;
 		}
 		outterDiv[i].appendChild(menuItem[i]);
 		outterDiv[i].appendChild(subMenu[i]);
