@@ -20,7 +20,7 @@ function procede() {
 
 	for (i = 0; i < 4; i++) {
 		outterDiv[i] = document.createElement('div');
-		
+
 		menuItem[i] = document.createElement('div');
 		menuItem[i].className = 'menuItem';
 		menuItem[i].innerHTML = 'Menu Item';
@@ -60,7 +60,42 @@ function procede() {
 
 	document.body.appendChild(floatMenu);
 
-	var css = "#floatMenu {position:absolute; top:15%; right:10px; width:200px; background-color:#FFF;margin:0;padding:0;font-size:15px; border-left:1px solid #ddd; border-right:1px solid #ddd;} #floatMenu h3 {color:white; font-weight:bold; padding:3px; margin:0; background-color:#006; border-bottom:1px solid #ddd; border-top:1px solid #ddd; font-size:16px; text-align:center;} #floatMenu ul {margin:0; padding:0; list-style:none;} #floatMenu ul div div {padding-left:10px;background-color:#f5f5f5; border-bottom:1px solid #ddd; border-top:1px solid #ddd;} #floatMenu ul div a { text-decoration:none;}";
+	var css = "#floatMenu {\
+			position:absolute;\
+			top:15%;\
+			right:10px;\
+			width:200px;\
+			background-color:#FFF;\
+			margin:0;\
+			padding:0;\
+			font-size:15px;\
+			border-left:1px solid #ddd;\
+			border-right:1px solid #ddd;\
+		}\
+		#floatMenu h3 {\
+			color:white;\
+			font-weight:bold;\
+			padding:3px;\
+			margin:0;\
+			background-color:#006;\
+			border-bottom:1px solid #ddd;\
+			border-top:1px solid #ddd;\
+			font-size:16px; text-align:center;\
+		}\
+		#floatMenu ul {\
+			margin:0;\
+			padding:0;\
+			list-style:none;\
+		}\
+		#floatMenu ul div div {\
+			padding-left:10px;\
+			background-color:#f5f5f5;\
+			border-bottom:1px solid #ddd;\
+			border-top:1px solid #ddd;\
+		}\
+		#floatMenu ul div a {\
+			text-decoration:none;\
+		}";
 
 	var head = document.head;
 	var style = document.createElement('style');
