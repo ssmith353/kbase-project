@@ -81,16 +81,26 @@ function proceed() {
 		li.appendChild(a);
 		subMenu[i].appendChild(li);
 
-
-		if ((categoryNames[i].indexOf('tall') > -1)) {
+		if ((categoryNames[i].indexOf('Installation') > -1)) {
 			link = "https://www.liferay.com/community/wiki/-/wiki/Main/Database+Portal+Properties";
 			a = document.createElement('a');
 			a.href = link;
-			a.text = "Database Setup";
+			a.text = "Database Properties";
 			a.target = '_blank';
 			li = document.createElement('li');
 			li.appendChild(a);
 			subMenu[i].appendChild(li);
+
+			if (dataArray[3].indexOf("MySQL") > -1) {
+				link = "https://support-kb.liferay.com/web/knowledge/knowledge-base/-/knowledge_base/article/12644";
+				a = document.createElement('a');
+				a.href = link;
+				a.text = dataArray[3] + "Setup";
+				a.target = '_blank';
+				li = document.createElement('li');
+				li.appendChild(a);
+				subMenu[i].appendChild(li);
+			}
 		}
 
 		outterDiv[i].appendChild(menuItem[i]);
