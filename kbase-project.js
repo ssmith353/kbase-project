@@ -26,20 +26,19 @@ function proceed() {
 		var li;
 
 		var link = '';
-		var temp = '';
+		var linkText = '';
 		switch (i) {
 			case 0:
-				temp = dataArray[0];
+				linkText = dataArray[0];
 				if (dataArray[0].indexOf('2') > -1) {
 					link = 'https://www.liferay.com/documents/14/21598941/Liferay+Portal+6.2+EE+Compatibility+Matrix.pdf/3b3fd878-c954-4acc-bd5f-19fb7eb78210';
 				} else {
 					link = 'https://www.liferay.com/documents/14/21598941/Liferay+Portal+6.1+EE+Compatibility+Matrix.pdf/fb724548-0d8d-408f-ad01-5acd862c038a';
 				}
 				break;
-
 			case 1:
 				link = 'https://support-kb.liferay.com/web/knowledge/knowledge-base/-/knowledge_base/article/';
-				temp = dataArray[3];
+				linkText = dataArray[3];
 				switch (dataBase) {
 					case "Oracle":
 						link += '31478';
@@ -66,17 +65,17 @@ function proceed() {
 				break;
 			case 2:
 				link = getLink(dataArray[2]);
-				temp = dataArray[2];
+				linkText = dataArray[2];
 				break;
 			case 3:
 				link = componentSearch;
-				temp = "Search KBASE: " + dataArray[4];
+				linkText = "Search KBASE: " + dataArray[4];
 				break;
 		}
 
 		a = document.createElement('a');
 		a.href = link;
-		a.text = temp;
+		a.text = linkText;
 		a.target = '_blank';
 		li = document.createElement('li');
 		li.appendChild(a);
@@ -207,18 +206,9 @@ function proceed() {
 	function getServerInfo(serverInfo, typeNode) {
 		AUI().use('aui-base', 'node',
 			function(A) {
-				var lrVersionText = 'LIFERAY VERSION: ';
-				var opSystemText = 'OPERATING SYSTEM: ';
-
-				var applicationServerText = 'APPLICATION SERVER: ';
-				var jvmText = 'JAVA VIRTUAL MACHINE: ';
-
-				var dataBaseText = 'DATABASE: ';
-				var browserText = 'PRIMARY BROWSER: ';
-
 				function serverType(serverInfo) {
 					var version = '';
-					serverTypeNode = typeNode;
+					var serverTypeNode = typeNode;
 					serverTypeNode.each(
 						function() {
 							var innerHTML = this.get('innerText');
@@ -255,33 +245,33 @@ function proceed() {
 
 	function getLink(text) {
 		var newIndex = 0;
-		for (newIndex = 0; newIndex < arrayofLinks.length; newIndex++) {
+		for (newIndex = 0; newIndex < arrayOfLinks.length; newIndex++) {
 			var temp = text;
 			temp = temp.split(" ");
 			temp = temp[0];
 			temp = temp.toLowerCase();
 
-			if (arrayofLinks[newIndex].indexOf(temp) > -1) {
-				return arrayofLinks[newIndex];
+			if (arrayOfLinks[newIndex].indexOf(temp) > -1) {
+				return arrayOfLinks[newIndex];
 			}
 		}
-		return (arrayofLinks[arrayofLinks.length - 1]);
+		return (arrayOfLinks[arrayOfLinks.length - 1]);
 	}
 }
 
 function addLinksToArray() {
 	var kbBase = "https://dev.liferay.com/discover/deployment/-/knowledge_base/6-2/installing-liferay-on-";
-	arrayofLinks[arrayofLinks.length] = kbBase + "glassfish-4";
-	arrayofLinks[arrayofLinks.length] = kbBase + "jboss-7-1";
-	arrayofLinks[arrayofLinks.length] = kbBase + "tomcat-7";
-	arrayofLinks[arrayofLinks.length] = kbBase + "oracle-weblogic-12c-12-1-2-and-h";
-	arrayofLinks[arrayofLinks.length] = kbBase + "websphere-8-5";
-	arrayofLinks[arrayofLinks.length] = "https://dev.liferay.com/discover/portal/-/knowledge_base/6-1/installing-liferay-on-resin-4";
-	arrayofLinks[arrayofLinks.length] = "https://www.liferay.com/documentation/liferay-portal/6.1/user-guide/-/ai/lp-6-1-ugen11-installing-liferay-on-mule-tcat-0";
-	arrayofLinks[arrayofLinks.length] = "https://www.liferay.com/community/wiki/-/wiki/Main/tcserver+Configuration+and+Tips";
+	arrayOfLinks[arrayOfLinks.length] = kbBase + "glassfish-4";
+	arrayOfLinks[arrayOfLinks.length] = kbBase + "jboss-7-1";
+	arrayOfLinks[arrayOfLinks.length] = kbBase + "tomcat-7";
+	arrayOfLinks[arrayOfLinks.length] = kbBase + "oracle-weblogic-12c-12-1-2-and-h";
+	arrayOfLinks[arrayOfLinks.length] = kbBase + "websphere-8-5";
+	arrayOfLinks[arrayOfLinks.length] = "https://dev.liferay.com/discover/portal/-/knowledge_base/6-1/installing-liferay-on-resin-4";
+	arrayOfLinks[arrayOfLinks.length] = "https://www.liferay.com/documentation/liferay-portal/6.1/user-guide/-/ai/lp-6-1-ugen11-installing-liferay-on-mule-tcat-0";
+	arrayOfLinks[arrayOfLinks.length] = "https://www.liferay.com/community/wiki/-/wiki/Main/tcserver+Configuration+and+Tips";
 }
 
-var arrayofLinks = [];
+var arrayOfLinks = [];
 var applicationServerText = "APPLICATION SERVER: ";
 var componentText = "COMPONENT: ";
 var dataBaseText = "DATABASE: ";
