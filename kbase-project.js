@@ -6,7 +6,7 @@ jq.onload = proceed;
 
 function proceed() {
 	getServerInfo();
-	addLinksToArray();
+	addLinksToArrays();
 	var dataBase = dataArray[3].split(' ')[0];
 	dataArray[4] = dataArray[4].replace(' ', '+');
 	var componentSearch = 'https://dev.liferay.com/discover/deployment?p_p_id=3&p_p_lifecycle=0&p_p_state=maximized&p_p_mode=view&_3_struts_action=%2Fsearch%2Fsearch&_3_redirect=%2Fdiscover%2Fdeployment%2F-%2Fknowledge_base&_3_keywords=' + dataArray[4] + '&_3_groupId=10184';
@@ -272,7 +272,7 @@ function proceed() {
 	}
 }
 
-function addLinksToArray() {
+function addLinksToArrays() {
 	var kbBase = "https://dev.liferay.com/discover/deployment/-/knowledge_base/6-2/installing-liferay-on-";
 	arrayOfLinks[arrayOfLinks.length] = kbBase + "glassfish-4";
 	arrayOfLinks[arrayOfLinks.length] = kbBase + "jboss-7-1";
@@ -282,9 +282,18 @@ function addLinksToArray() {
 	arrayOfLinks[arrayOfLinks.length] = "https://dev.liferay.com/discover/portal/-/knowledge_base/6-1/installing-liferay-on-resin-4";
 	arrayOfLinks[arrayOfLinks.length] = "https://www.liferay.com/documentation/liferay-portal/6.1/user-guide/-/ai/lp-6-1-ugen11-installing-liferay-on-mule-tcat-0";
 	arrayOfLinks[arrayOfLinks.length] = "https://www.liferay.com/community/wiki/-/wiki/Main/tcserver+Configuration+and+Tips";
+
+	lrVersionMap['6.2'] = ['https://www.liferay.com/documents/14/21598941/Liferay+Portal+6.2+EE+Compatibility+Matrix.pdf/3b3fd878-c954-4acc-bd5f-19fb7eb78210'];
+	lrVersionMap['6.1'] = ['https://www.liferay.com/documents/14/21598941/Liferay+Portal+6.1+EE+Compatibility+Matrix.pdf/fb724548-0d8d-408f-ad01-5acd862c038a'];
+	lrVersionMap['6.0'] = ['https://www.liferay.com/documents/3133562/8435741/Compatibility+Matrix+v6.0.pdf/b58f3e64-30d8-400a-aba3-71c16e439fc9?'];
+	lrVersionMap['5.2'] = ['https://www.liferay.com/documents/3133562/8435737/Compatibility+Matrix+v5.2.pdf/4a81c299-132c-488d-b10e-b7546891a1d2?'];
+	lrVersionMap['5.1'] = ['https://www.liferay.com/documents/3133562/8435733/Support+Matrix+v5.1.pdf/91f9a892-6b3b-4ab2-abdc-14ceb1aceb1f'];
+
+	console.log(lrVersionMap['6.2'][0]);
 }
 
 var arrayOfLinks = [];
+var componentMap = new Map(), lrVersionMap = new Map(), browserMap = new Map(), javaMap = new Map(), osMap = new Map(), appServerMap = new Map(), databaseMap = new Map();
 var applicationServerText = "APPLICATION SERVER: ";
 var componentText = "COMPONENT: ";
 var dataBaseText = "DATABASE: ";
