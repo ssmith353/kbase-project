@@ -8,8 +8,8 @@ function proceed() {
 	getServerInfo();
 	addLinksToArrays();
 	var dataBase = dataArray[3].split(' ')[0];
-	//dataArray[4] = dataArray[4].replace(' ', '+');
-	var componentSearch = 'https://dev.liferay.com/discover/deployment?p_p_id=3&p_p_lifecycle=0&p_p_state=maximized&p_p_mode=view&_3_struts_action=%2Fsearch%2Fsearch&_3_redirect=%2Fdiscover%2Fdeployment%2F-%2Fknowledge_base&_3_keywords=' + dataArray[5] + '&_3_groupId=10184';
+	//dataArray[6] = dataArray[6].replace(' ', '+'); //I don't think we need this
+	var componentSearch = 'https://dev.liferay.com/discover/deployment?p_p_id=3&p_p_lifecycle=0&p_p_state=maximized&p_p_mode=view&_3_struts_action=%2Fsearch%2Fsearch&_3_redirect=%2Fdiscover%2Fdeployment%2F-%2Fknowledge_base&_3_keywords=' + dataArray[6] + '&_3_groupId=10184';
 	floatMenu.id = "floatMenu";
 	var i = 0;
 	for (i = 0; i < 4; i++) {
@@ -70,7 +70,7 @@ function proceed() {
 				break;
 			case 3:
 				link = componentSearch;
-				linkText = "Search KBASE: " + dataArray[5];
+				linkText = "Search KBASE: " + dataArray[6];
 				break;
 		}
 
@@ -236,7 +236,7 @@ function proceed() {
 						var begin = version.indexOf(serverInfo) + serverInfo.length;
 						var end = version.indexOf('\n');
 
-						if ((serverInfo == opSystemText) || (serverInfo == browserText)) {
+						if ((serverInfo == opSystemText) || (serverInfo == browserText) || (serverInfo == javaText)) {
 							end = version.indexOf('\n') + begin;
 						}
 						version = version.substring(begin, end);
@@ -252,6 +252,7 @@ function proceed() {
 				dataArray[dataArray.length] = serverType(applicationServerText, typeNode);
 				dataArray[dataArray.length] = serverType(dataBaseText, typeNode);
 				dataArray[dataArray.length] = serverType(browserText, typeNode);
+				dataArray[dataArray.length] = serverType(javaText, typeNode);
 				typeNode = A.all(".callout-content");
 				dataArray[dataArray.length] = serverType(componentText, typeNode);
 			}
@@ -363,6 +364,7 @@ var dataBaseText = "DATABASE: ";
 var lrVersionText = "LIFERAY VERSION: ";
 var opSystemText = "OPERATING SYSTEM: ";
 var browserText =  "PRIMARY BROWSER: ";
+var javaText =  "JAVA VIRTUAL MACHINE: "
 
 var dataArray = [];
 
