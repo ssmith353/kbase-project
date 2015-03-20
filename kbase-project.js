@@ -23,6 +23,7 @@ function proceed() {
 		subMenu[i].className = 'subMenu';
 
 		var a;
+		var j;
 		var li;
 
 		var link = '';
@@ -36,72 +37,48 @@ function proceed() {
 
 				link = lrVersionMap[versionNumber][0];
 
-				break;
-			case 1:
-				link = 'https://support-kb.liferay.com/web/knowledge/knowledge-base/-/knowledge_base/article/';
-				linkText = dataArray[3];
-				switch (dataBase) {
-					case "Oracle":
-						link += '31478';
-						break;
-					case "MySQL":
-						link += '31470';
-						break;
-					case "DB2":
-						link += '31688';
-						break;
-					case "PostgreSQL":
-						link += '31644';
-						break;
-					case "Sybase":
-						link += '31656';
-						break;
-					case "SQL":
-						link += '31668';
-						break;
-					case "Hypersonic":
-						link += '15256';
-						break;
-				}
-				break;
-			case 2:
-				link = getLink(dataArray[2]);
-				linkText = dataArray[2];
-				break;
-			case 3:
-				link = componentSearch;
-				linkText = "Search KBASE: " + dataArray[6];
-				break;
-		}
-
-		a = document.createElement('a');
-		a.href = link;
-		a.text = linkText;
-		a.target = '_blank';
-		li = document.createElement('li');
-		li.appendChild(a);
-		subMenu[i].appendChild(li);
-
-		if ((categoryNames[i].indexOf('Installation') > -1)) {
-			link = "https://www.liferay.com/community/wiki/-/wiki/Main/Database+Portal+Properties";
-			a = document.createElement('a');
-			a.href = link;
-			a.text = "Database Properties";
-			a.target = '_blank';
-			li = document.createElement('li');
-			li.appendChild(a);
-			subMenu[i].appendChild(li);
-
-			if (dataArray[3].indexOf("MySQL") > -1) {
-				link = "https://support-kb.liferay.com/web/knowledge/knowledge-base/-/knowledge_base/article/12644";
 				a = document.createElement('a');
 				a.href = link;
-				a.text = dataArray[3] + "Setup";
+				a.text = linkText;
 				a.target = '_blank';
 				li = document.createElement('li');
 				li.appendChild(a);
 				subMenu[i].appendChild(li);
-			}
+				break;
+			case 1:
+				for(j = 0; j < 7; j++) {
+					var linkText = dataArray[j];
+					link = appServerMap[linkText][1];
+				}
+
+				for(j = 0; j < linkArray.length; j++) {
+					a = document.createElement('a');
+					a.href = link;
+					a.text = linkText;
+					a.target = '_blank';
+					li = document.createElement('li');
+					li.appendChild(a);
+					subMenu[i].appendChild(li);
+				}
+				break;
+			case 2:
+				a = document.createElement('a');
+				a.href = link;
+				a.text = linkText;
+				a.target = '_blank';
+				li = document.createElement('li');
+				li.appendChild(a);
+				subMenu[i].appendChild(li);
+				break;
+			case 3:
+				a = document.createElement('a');
+				a.href = link;
+				a.text = linkText;
+				a.target = '_blank';
+				li = document.createElement('li');
+				li.appendChild(a);
+				subMenu[i].appendChild(li);
+				break;
 		}
 
 		outterDiv[i].appendChild(menuItem[i]);
