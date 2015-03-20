@@ -309,6 +309,7 @@ function addLinksToArrays() {
 	componentMap['Document Library'] = ['https://dev.liferay.com/discover/portal/-/knowledge_base/6-2/document-management', null, 'https://www.liferay.com/group/customer/knowledge/kb/-/knowledge_base/article/30483903'];
 	componentMap['LAR/Staging'] = [null, null, 'https://www.liferay.com/group/customer/knowledge/kb/-/knowledge_base/article/30484028'];
 	componentMap['License'] = ['https://www.liferay.com/group/customer/knowledge/kb/-/knowledge_base/article/36709616', null, 'https://www.liferay.com/group/customer/kbase/-/knowledge_base/article/36675767'];
+	componentMap['License/Account Setup'] = ['https://www.liferay.com/group/customer/knowledge/kb/-/knowledge_base/article/36709616', null, 'https://www.liferay.com/group/customer/kbase/-/knowledge_base/article/36675767'];
 	componentMap['Liferay API'] = [null, null, 'https://www.liferay.com/group/customer/knowledge/kb/-/knowledge_base/article/30484149'];
 	componentMap['Liferay Faces'] = ['https://www.liferay.com/community/liferay-projects/liferay-faces/documentation', null, 'https://www.liferay.com/group/customer/knowledge/kb/-/knowledge_base/article/27733288'];
 	componentMap['Liferay Mobile SDK'] = ['https://dev.liferay.com/develop/tutorials/-/knowledge_base/6-2/mobile', null, null];
