@@ -30,11 +30,12 @@ function proceed() {
 		switch (i) {
 			case 0:
 				linkText = dataArray[0];
-				if (dataArray[0].indexOf('2') > -1) {
-					link = 'https://www.liferay.com/documents/14/21598941/Liferay+Portal+6.2+EE+Compatibility+Matrix.pdf/3b3fd878-c954-4acc-bd5f-19fb7eb78210';
-				} else {
-					link = 'https://www.liferay.com/documents/14/21598941/Liferay+Portal+6.1+EE+Compatibility+Matrix.pdf/fb724548-0d8d-408f-ad01-5acd862c038a';
-				}
+
+				var versionNumber = linkText.split(" ");
+				versionNumber = versionNumber[0];
+
+				link = lrVersionMap[versionNumber][0];
+
 				break;
 			case 1:
 				link = 'https://support-kb.liferay.com/web/knowledge/knowledge-base/-/knowledge_base/article/';
@@ -288,8 +289,6 @@ function addLinksToArrays() {
 	lrVersionMap['6.0'] = ['https://www.liferay.com/documents/3133562/8435741/Compatibility+Matrix+v6.0.pdf/b58f3e64-30d8-400a-aba3-71c16e439fc9?'];
 	lrVersionMap['5.2'] = ['https://www.liferay.com/documents/3133562/8435737/Compatibility+Matrix+v5.2.pdf/4a81c299-132c-488d-b10e-b7546891a1d2?'];
 	lrVersionMap['5.1'] = ['https://www.liferay.com/documents/3133562/8435733/Support+Matrix+v5.1.pdf/91f9a892-6b3b-4ab2-abdc-14ceb1aceb1f'];
-
-	console.log(lrVersionMap['6.2'][0]);
 }
 
 var arrayOfLinks = [];
