@@ -162,6 +162,9 @@ function proceed() {
 			font-weight:bold;\
 			padding-left:10px;\
 		}\
+		.subMenu {\
+			border-bottom:1px solid #ddd;\
+		}\
 		#floatMenu ul div a {\
 			text-decoration:none;\
 		}";
