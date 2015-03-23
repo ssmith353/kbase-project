@@ -7,12 +7,11 @@ jq.onload = proceed;
 function proceed() {
 	getServerInfo();
 	addLinksToArrays();
-	var dataBase = dataArray[3].split(' ')[0];
+	//var dataBase = dataArray[3].split(' ')[0];
 	//dataArray[6] = dataArray[6].replace(' ', '+'); //I don't think we need this
-	var componentSearch = 'https://dev.liferay.com/discover/deployment?p_p_id=3&p_p_lifecycle=0&p_p_state=maximized&p_p_mode=view&_3_struts_action=%2Fsearch%2Fsearch&_3_redirect=%2Fdiscover%2Fdeployment%2F-%2Fknowledge_base&_3_keywords=' + dataArray[6] + '&_3_groupId=10184';
+	//var componentSearch = 'https://dev.liferay.com/discover/deployment?p_p_id=3&p_p_lifecycle=0&p_p_state=maximized&p_p_mode=view&_3_struts_action=%2Fsearch%2Fsearch&_3_redirect=%2Fdiscover%2Fdeployment%2F-%2Fknowledge_base&_3_keywords=' + dataArray[6] + '&_3_groupId=10184';
 	floatMenu.id = "floatMenu";
-	var i = 0;
-	for (i = 0; i < 4; i++) {
+	for (var i = 0; i < 4; i++) {
 		outterDiv[i] = document.createElement('div');
 
 		menuItem[i] = document.createElement('div');
@@ -34,6 +33,7 @@ function proceed() {
 
 				var versionNumber = linkText.split(" ");
 				versionNumber = versionNumber[0];
+				dataArray[0] = versionNumber;
 
 				link = lrVersionMap[versionNumber][0];
 
@@ -46,9 +46,18 @@ function proceed() {
 				subMenu[i].appendChild(li);
 				break;
 			case 1:
-				for(j = 0; j < 7; j++) {
+				var linkArray = [];
+
+				for(j = 0; j < dataArray.length; j++) {
 					var linkText = dataArray[j];
-					link = appServerMap[linkText][1];
+
+					var test;
+
+					if (linkText in lrVersionMap) {
+						test = lrVersionMap[linkText][0];
+						console.log(test);
+					}
+
 				}
 
 				for(j = 0; j < linkArray.length; j++) {
@@ -355,6 +364,7 @@ var browserText = "PRIMARY BROWSER: ";
 var javaText = "JAVA VIRTUAL MACHINE: ";
 
 var dataArray = [];
+var arrayOfMapLinks = [];
 
 var floatMenu = document.createElement('div');
 var outterDiv = [];
