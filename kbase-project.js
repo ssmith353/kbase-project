@@ -7,10 +7,15 @@ jq.onload = proceed;
 function proceed() {
 	getServerInfo();
 	addLinksToArrays();
+	getLinks();
+	console.log(installationLinks);
+	console.log(supportPolicyLinks);
+	console.log(troubleshootingLinks);
 	//var dataBase = dataArray[3].split(' ')[0];
 	//dataArray[6] = dataArray[6].replace(' ', '+'); //I don't think we need this
 	//var componentSearch = 'https://dev.liferay.com/discover/deployment?p_p_id=3&p_p_lifecycle=0&p_p_state=maximized&p_p_mode=view&_3_struts_action=%2Fsearch%2Fsearch&_3_redirect=%2Fdiscover%2Fdeployment%2F-%2Fknowledge_base&_3_keywords=' + dataArray[6] + '&_3_groupId=10184';
 	floatMenu.id = "floatMenu";
+
 	for (var i = 0; i < 4; i++) {
 		outterDiv[i] = document.createElement('div');
 
@@ -46,29 +51,7 @@ function proceed() {
 				subMenu[i].appendChild(li);
 				break;
 			case 1:
-				var linkArray = [];
 
-				for(j = 0; j < dataArray.length; j++) {
-					var linkText = dataArray[j];
-
-					var test;
-
-					if (linkText in lrVersionMap) {
-						test = lrVersionMap[linkText][0];
-						console.log(test);
-					}
-
-				}
-
-				for(j = 0; j < linkArray.length; j++) {
-					a = document.createElement('a');
-					a.href = link;
-					a.text = linkText;
-					a.target = '_blank';
-					li = document.createElement('li');
-					li.appendChild(a);
-					subMenu[i].appendChild(li);
-				}
 				break;
 			case 2:
 				a = document.createElement('a');
@@ -227,7 +210,7 @@ function proceed() {
 						}
 						version = version.substring(begin, end);
 
-						return version;
+						return version.toString();
 					}
 
 					return serverType;
@@ -245,33 +228,142 @@ function proceed() {
 		);
 	}
 
-	function getLink(text) {
-		var newIndex;
-		for (newIndex = 0; newIndex < arrayOfLinks.length; newIndex++) {
-			var temp = text;
-			temp = temp.split(" ");
-			temp = temp[0];
-			temp = temp.toLowerCase();
+	function getLinks() {
+		var appServer = dataArray[2].split(" ")[0],
+			browser = dataArray[4].split(" ")[0],
+			component = dataArray[6],
+			db = dataArray[3].split(" ")[0],
+			java = dataArray[5].split(" ")[0],
+			os = dataArray[1].split(" ")[0];
 
-			if (arrayOfLinks[newIndex].indexOf(temp) > -1) {
-				return arrayOfLinks[newIndex];
+		for (var i = 0; i < arrayOfMaps.length; i++ ) {
+			var map = arrayOfMaps[i];
+			var temp = [];
+			switch (i) {
+				case 0:
+					if (appServer in map) {
+						if (map[appServer][0] !== null) {
+							if (appServer == 'Websphere') {
+								if (dataArray[2].indexOf('8.5')) {
+									temp.link = map[appServer][0][0];
+									temp.name = dataArray[2];
+									installationLinks[installationLinks.length] = temp;
+								} else {
+									temp.link = map[appServer][0][1];
+									temp.name = dataArray[2];
+									installationLinks[installationLinks.length] = temp;
+								}
+							} else if (appServer == 'Weblogic') {
+								if (dataArray[2].indexOf('12')) {
+									temp.link = map[appServer][0][0];
+									temp.name = dataArray[2];
+									installationLinks[installationLinks.length] = temp;
+								} else {
+									temp.link = map[appServer][0][1];
+									temp.name = dataArray[2];
+									installationLinks[installationLinks.length] = temp;
+								}
+							} else {
+								temp.link = map[appServer][0];
+								temp.name = dataArray[2];
+								installationLinks[installationLinks.length] = temp;
+							}
+						}
+						if (map[appServer][1] !== null) {
+							temp.link = map[appServer][1];
+							temp.name = dataArray[2];
+							supportPolicyLinks[supportPolicyLinks.length] = temp;
+						}
+						if (map[appServer][2] !== null) {
+							temp.link = map[appServer][2];
+							temp.name = dataArray[2];
+							troubleshootingLinks[troubleshootingLinks.length] = temp;
+						}
+					}
+					break;
+				case 1:
+					if (browser in map) {
+						if (map[browser][0] !== null) {
+							temp.link = map[browser][0];
+							temp.name = dataArray[4];
+							supportPolicyLinks[supportPolicyLinks.length] = temp;
+						}
+						if (map[browser][1] !== null) {
+							temp.link = map[browser][1];
+							temp.name = dataArray[4];
+							troubleshootingLinks[troubleshootingLinks.length] = temp;
+						}
+					}
+					break;
+				case 2:
+					if (component in map) {
+						if (map[component][0] !== null) {
+							temp.link = map[component][0];
+							temp.name = dataArray[6];
+							installationLinks[installationLinks.length] = temp;
+						}
+						if (map[component][1] !== null) {
+							temp.link = map[component][1];
+							temp.name = dataArray[6];
+							supportPolicyLinks[supportPolicyLinks.length] = temp;
+						}
+						if (map[component][2] !== null) {
+							temp.link = map[component][2];
+							temp.name = dataArray[6];
+							troubleshootingLinks[troubleshootingLinks.length] = temp;
+						}
+					}
+					break;
+				case 3:
+					if (db in map) {
+						if (map[db][0] !== null) {
+							temp.link = map[db][0];
+							temp.name = dataArray[3];
+							supportPolicyLinks[supportPolicyLinks.length] = temp;
+						}
+						if (map[db][1] !== null) {
+							temp.link = map[db][1];
+							temp.name = dataArray[3];
+							troubleshootingLinks[troubleshootingLinks.length] = temp;
+						}
+					}
+					break;
+				case 4:
+					if (java in map) {
+						if (map[java][0] !== null) {
+							temp.link = map[java][1];
+							temp.name = dataArray[5];
+							supportPolicyLinks[supportPolicyLinks.length] = temp;
+						}
+						if (map[java][1] !== null) {
+							temp.link = map[java][1];
+							temp.name = dataArray[5];
+							troubleshootingLinks[troubleshootingLinks.length] = temp;
+						}
+					}
+					break;
+				case 5:
+					if (os in map) {
+						if (map[os][0] !== null) {
+							console.log('This is the OS: '+ os);
+							temp.link = map[os][0];
+							temp.name = dataArray[1];
+							supportPolicyLinks[supportPolicyLinks.length] = temp;
+						}
+						if (map[os][1] !== null) {
+							temp.link = map[os][1];
+							temp.name = dataArray[1];
+							troubleshootingLinks[troubleshootingLinks.length] = temp;
+						}
+					}
+					break;
 			}
 		}
-		return (arrayOfLinks[arrayOfLinks.length - 1]);
+		console.log(appServer, browser, component, db, java, os);
 	}
 }
 
 function addLinksToArrays() {
-	var kbBase = "https://dev.liferay.com/discover/deployment/-/knowledge_base/6-2/installing-liferay-on-";
-	arrayOfLinks[arrayOfLinks.length] = kbBase + "glassfish-4";
-	arrayOfLinks[arrayOfLinks.length] = kbBase + "jboss-7-1";
-	arrayOfLinks[arrayOfLinks.length] = kbBase + "tomcat-7";
-	arrayOfLinks[arrayOfLinks.length] = kbBase + "oracle-weblogic-12c-12-1-2-and-h";
-	arrayOfLinks[arrayOfLinks.length] = kbBase + "websphere-8-5";
-	arrayOfLinks[arrayOfLinks.length] = "https://dev.liferay.com/discover/portal/-/knowledge_base/6-1/installing-liferay-on-resin-4";
-	arrayOfLinks[arrayOfLinks.length] = "https://www.liferay.com/documentation/liferay-portal/6.1/user-guide/-/ai/lp-6-1-ugen11-installing-liferay-on-mule-tcat-0";
-	arrayOfLinks[arrayOfLinks.length] = "https://www.liferay.com/community/wiki/-/wiki/Main/tcserver+Configuration+and+Tips";
-
 	appServerMap['Websphere'] = [
 		['https://dev.liferay.com/discover/deployment/-/knowledge_base/6-2/installing-liferay-on-websphere-8-5', 'https://dev.liferay.com/discover/portal/-/knowledge_base/6-1/installing-liferay-on-websphere-8-0'], 'https://support-kb.liferay.com/web/knowledge/knowledge-base/-/knowledge_base/article/31534', null
 	];
@@ -283,11 +375,11 @@ function addLinksToArrays() {
 	appServerMap['Tcat'] = ['https://dev.liferay.com/discover/deployment/-/knowledge_base/6-2/installing-liferay-on-mulesoft-tcat', 'https://support-kb.liferay.com/web/knowledge/knowledge-base/-/knowledge_base/article/32064', null];
 	appServerMap['Glassfish'] = ['https://dev.liferay.com/discover/deployment/-/knowledge_base/6-2/installing-liferay-on-glassfish-4', 'https://support-kb.liferay.com/web/knowledge/knowledge-base/-/knowledge_base/article/31320', null];
 	appServerMap['Resin'] = ['https://dev.liferay.com/discover/portal/-/knowledge_base/6-1/installing-liferay-on-resin-4', 'https://support-kb.liferay.com/web/knowledge/knowledge-base/-/knowledge_base/article/31988', null];
-	appServerMap['Tc Server'] = ['https://support-kb.liferay.com/web/knowledge/knowledge-base/-/knowledge_base/article/13554', 'https://support-kb.liferay.com/web/knowledge/knowledge-base/-/knowledge_base/article/32076', null];
+	appServerMap['tcServer'] = ['https://support-kb.liferay.com/web/knowledge/knowledge-base/-/knowledge_base/article/13554', 'https://support-kb.liferay.com/web/knowledge/knowledge-base/-/knowledge_base/article/32076', null];
 
 	browserMap['Firefox'] = ['https://support-kb.liferay.com/web/knowledge/knowledge-base/-/knowledge_base/article/32010', 'https://support-kb.liferay.com/web/knowledge/knowledge-base/-/knowledge_base/article/28327'];
 	browserMap['Chrome'] = ['https://support-kb.liferay.com/web/knowledge/knowledge-base/-/knowledge_base/article/31732', 'https://support-kb.liferay.com/web/knowledge/knowledge-base/-/knowledge_base/article/28327'];
-	browserMap['Internet Explorer'] = ['https://support-kb.liferay.com/web/knowledge/knowledge-base/-/knowledge_base/article/31762', 'https://support-kb.liferay.com/web/knowledge/knowledge-base/-/knowledge_base/article/28327'];
+	browserMap['Internet'] = ['https://support-kb.liferay.com/web/knowledge/knowledge-base/-/knowledge_base/article/31762', 'https://support-kb.liferay.com/web/knowledge/knowledge-base/-/knowledge_base/article/28327'];
 	browserMap['Safari'] = ['https://support-kb.liferay.com/web/knowledge/knowledge-base/-/knowledge_base/article/32039', 'https://support-kb.liferay.com/web/knowledge/knowledge-base/-/knowledge_base/article/28327'];
 
 	componentMap['Account Administration'] = [null, null, null];
@@ -318,8 +410,8 @@ function addLinksToArrays() {
 	databaseMap['Mysql'] = ['https://support-kb.liferay.com/web/knowledge/knowledge-base/-/knowledge_base/article/31470', null];
 	databaseMap['DB2'] = ['https://support-kb.liferay.com/web/knowledge/knowledge-base/-/knowledge_base/article/31688', null];
 	databaseMap['PostgreSQL'] = ['https://support-kb.liferay.com/web/knowledge/knowledge-base/-/knowledge_base/article/31644', null];
-	databaseMap['Sybase ASE'] = ['https://support-kb.liferay.com/web/knowledge/knowledge-base/-/knowledge_base/article/31656', null];
-	databaseMap['SQL Server'] = ['https://support-kb.liferay.com/web/knowledge/knowledge-base/-/knowledge_base/article/31668', null];
+	databaseMap['Sybase'] = ['https://support-kb.liferay.com/web/knowledge/knowledge-base/-/knowledge_base/article/31656', null];
+	databaseMap['SQL'] = ['https://support-kb.liferay.com/web/knowledge/knowledge-base/-/knowledge_base/article/31668', null];
 
 	javaMap['IBM JDK'] = ['https://support-kb.liferay.com/web/knowledge/knowledge-base/-/knowledge_base/article/31918', 'https://support-kb.liferay.com/web/knowledge/knowledge-base/-/knowledge_base/article/24963'];
 	javaMap['Oracle JRockit'] = ['https://support-kb.liferay.com/web/knowledge/knowledge-base/-/knowledge_base/article/31996', null];
@@ -334,20 +426,19 @@ function addLinksToArrays() {
 
 	osMap['Mac'] = [null, null];
 	osMap['Windows'] = ['https://support-kb.liferay.com/web/knowledge/knowledge-base/-/knowledge_base/article/32055', null];
-	osMap['Red Hat Enterprise'] = ['https://support-kb.liferay.com/web/knowledge/knowledge-base/-/knowledge_base/article/31911', null];
-	osMap['IBM AIX'] = ['https://support-kb.liferay.com/web/knowledge/knowledge-base/-/knowledge_base/article/31895', null];
+	osMap['Red'] = ['https://support-kb.liferay.com/web/knowledge/knowledge-base/-/knowledge_base/article/31911', null];
+	osMap['AIX'] = ['https://support-kb.liferay.com/web/knowledge/knowledge-base/-/knowledge_base/article/31895', null];
 	osMap['Debian'] = ['https://support-kb.liferay.com/web/knowledge/knowledge-base/-/knowledge_base/article/31812', null];
 	osMap['openSUSE'] = ['https://support-kb.liferay.com/web/knowledge/knowledge-base/-/knowledge_base/article/31840', null];
 	osMap['Ubuntu'] = ['https://support-kb.liferay.com/web/knowledge/knowledge-base/-/knowledge_base/article/32047', null];
 	osMap['CentOS'] = ['https://support-kb.liferay.com/web/knowledge/knowledge-base/-/knowledge_base/article/31902', null];
 	osMap['Solaris'] = ['https://support-kb.liferay.com/web/knowledge/knowledge-base/-/knowledge_base/article/31980', null];
-	osMap['Oracle Linux'] = ['https://support-kb.liferay.com/web/knowledge/knowledge-base/-/knowledge_base/article/31847', null];
-	osMap['Other" OS'] = ['https://support-kb.liferay.com/web/knowledge/knowledge-base/-/knowledge_base/article/32112', null];
+	osMap['Oracle'] = ['https://support-kb.liferay.com/web/knowledge/knowledge-base/-/knowledge_base/article/31847', null];
+	osMap['Other'] = ['https://support-kb.liferay.com/web/knowledge/knowledge-base/-/knowledge_base/article/32112', null];
 	osMap['HP-UX'] = ['https://support-kb.liferay.com/web/knowledge/knowledge-base/-/knowledge_base/article/31820', null];
-	osMap['General Linux'] = ['https://support-kb.liferay.com/web/knowledge/knowledge-base/-/knowledge_base/article/32318', null];
+	osMap['General'] = ['https://support-kb.liferay.com/web/knowledge/knowledge-base/-/knowledge_base/article/32318', null];
 }
 
-var arrayOfLinks = [];
 var appServerMap = new Map(),
 	browserMap = new Map(),
 	componentMap = new Map(),
@@ -355,6 +446,13 @@ var appServerMap = new Map(),
 	javaMap = new Map(),
 	lrVersionMap = new Map(),
 	osMap = new Map();
+
+var arrayOfMaps = [appServerMap, browserMap, componentMap, databaseMap, javaMap, osMap];
+
+var supportPolicyLinks = [],
+	installationLinks = [],
+	troubleshootingLinks = [];
+
 var applicationServerText = "APPLICATION SERVER: ";
 var componentText = "COMPONENT: ";
 var dataBaseText = "DATABASE: ";
@@ -364,7 +462,6 @@ var browserText = "PRIMARY BROWSER: ";
 var javaText = "JAVA VIRTUAL MACHINE: ";
 
 var dataArray = [];
-var arrayOfMapLinks = [];
 
 var floatMenu = document.createElement('div');
 var outterDiv = [];
