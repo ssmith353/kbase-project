@@ -51,25 +51,37 @@ function proceed() {
 				subMenu[i].appendChild(li);
 				break;
 			case 1:
-
+				for (var j = 0; j < supportPolicyLinks.length; j++) {
+					a = document.createElement('a');
+					a.href = supportPolicyLinks[j].link;
+					a.text = supportPolicyLinks[j].name;
+					a.target = '_blank';
+					li = document.createElement('li');
+					li.appendChild(a);
+					subMenu[i].appendChild(li);
+				}
 				break;
 			case 2:
-				a = document.createElement('a');
-				a.href = link;
-				a.text = linkText;
-				a.target = '_blank';
-				li = document.createElement('li');
-				li.appendChild(a);
-				subMenu[i].appendChild(li);
+				for (var j = 0; j < installationLinks.length; j++) {
+					a = document.createElement('a');
+					a.href = installationLinks[j].link;
+					a.text = installationLinks[j].name;
+					a.target = '_blank';
+					li = document.createElement('li');
+					li.appendChild(a);
+					subMenu[i].appendChild(li);
+				}
 				break;
 			case 3:
-				a = document.createElement('a');
-				a.href = link;
-				a.text = linkText;
-				a.target = '_blank';
-				li = document.createElement('li');
-				li.appendChild(a);
-				subMenu[i].appendChild(li);
+				for (var j = 0; j < troubleshootingLinks.length; j++) {
+					a = document.createElement('a');
+					a.href = troubleshootingLinks[j].link;
+					a.text = troubleshootingLinks[j].name;
+					a.target = '_blank';
+					li = document.createElement('li');
+					li.appendChild(a);
+					subMenu[i].appendChild(li);
+				}
 				break;
 		}
 
