@@ -209,16 +209,12 @@ function proceed() {
 					if (version) {
 						var begin = version.toUpperCase().indexOf(serverInfo) + serverInfo.length;
 						var end = version.indexOf('  ');
-						if ((serverInfo == opSystemText) || (serverInfo == browserText) || (serverInfo == javaText) || (serverInfo == componentText)) {
-
+						if ((serverInfo == opSystemText) || (serverInfo == browserText) || (serverInfo == javaText)) {
 							end = version.indexOf('  ') + begin;
-							if(serverInfo == componentText) {
-								end = version.indexOf('   ');
-							}
+						} else if(serverInfo == componentText) {
+							end = version.indexOf('   ');
 						}
-						//console.log(version);
 						version = version.substring(begin, end);
-						console.log(version);
 						return version.toString();
 					}
 
