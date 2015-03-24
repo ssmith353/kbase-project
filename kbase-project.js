@@ -8,12 +8,6 @@ function proceed() {
 	getServerInfo();
 	addLinksToArrays();
 	getLinks();
-	console.log(installationLinks);
-	console.log(supportPolicyLinks);
-	console.log(troubleshootingLinks);
-	//var dataBase = dataArray[3].split(' ')[0];
-	//dataArray[6] = dataArray[6].replace(' ', '+'); //I don't think we need this
-	//var componentSearch = 'https://dev.liferay.com/discover/deployment?p_p_id=3&p_p_lifecycle=0&p_p_state=maximized&p_p_mode=view&_3_struts_action=%2Fsearch%2Fsearch&_3_redirect=%2Fdiscover%2Fdeployment%2F-%2Fknowledge_base&_3_keywords=' + dataArray[6] + '&_3_groupId=10184';
 	floatMenu.id = "floatMenu";
 
 	for (var i = 0; i < 4; i++) {
@@ -27,7 +21,6 @@ function proceed() {
 		subMenu[i].className = 'subMenu';
 
 		var a;
-		var j;
 		var li;
 
 		var link = '';
@@ -248,7 +241,7 @@ function proceed() {
 			java = dataArray[5].split(" ")[0],
 			os = dataArray[1].split(" ")[0];
 
-		for (var i = 0; i < arrayOfMaps.length; i++ ) {
+		for (var i = 0; i < arrayOfMaps.length; i++) {
 			var map = arrayOfMaps[i];
 			var temp = [];
 			switch (i) {
@@ -357,7 +350,6 @@ function proceed() {
 				case 5:
 					if (os in map) {
 						if (map[os][0] !== null) {
-							console.log('This is the OS: '+ os);
 							temp.link = map[os][0];
 							temp.name = dataArray[1];
 							supportPolicyLinks[supportPolicyLinks.length] = temp;
@@ -371,7 +363,6 @@ function proceed() {
 					break;
 			}
 		}
-		console.log(appServer, browser, component, db, java, os);
 	}
 }
 
