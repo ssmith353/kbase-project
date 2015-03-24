@@ -199,22 +199,26 @@ function proceed() {
 					var serverTypeNode = typeNode;
 					serverTypeNode.each(
 						function() {
-							var innerHTML = this.get('innerText');
-							if (innerHTML.indexOf(serverInfo) > -1) {
+							var innerHTML = this.get('textContent');
+							if (innerHTML.toUpperCase().indexOf(serverInfo) > -1) {
 								version = innerHTML;
 							}
 						}
 					);
 
 					if (version) {
-						var begin = version.indexOf(serverInfo) + serverInfo.length;
-						var end = version.indexOf('\n');
+						var begin = version.toUpperCase().indexOf(serverInfo) + serverInfo.length;
+						var end = version.indexOf('  ');
+						if ((serverInfo == opSystemText) || (serverInfo == browserText) || (serverInfo == javaText) || (serverInfo == componentText)) {
 
-						if ((serverInfo == opSystemText) || (serverInfo == browserText) || (serverInfo == javaText)) {
-							end = version.indexOf('\n') + begin;
+							end = version.indexOf('  ') + begin;
+							if(serverInfo == componentText) {
+								end = version.indexOf('   ');
+							}
 						}
+						//console.log(version);
 						version = version.substring(begin, end);
-
+						console.log(version);
 						return version.toString();
 					}
 
@@ -460,8 +464,8 @@ var applicationServerText = "APPLICATION SERVER: ";
 var componentText = "COMPONENT: ";
 var dataBaseText = "DATABASE: ";
 var lrVersionText = "LIFERAY VERSION: ";
-var opSystemText = "OPERATING SYSTEM: ";
-var browserText = "PRIMARY BROWSER: ";
+var opSystemText = "OPERATING SYSTEM:  ";
+var browserText = "PRIMARY BROWSER:  ";
 var javaText = "JAVA VIRTUAL MACHINE: ";
 
 var dataArray = [];
