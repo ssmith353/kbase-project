@@ -105,7 +105,7 @@ function proceed() {
 
 	/*jshint multistr: true */
 	var css = "#floatMenu {\
-			position:absolute;\
+			position:fixed;\
 			top:15%;\
 			right:0px;\
 			width:200px;\
@@ -157,24 +157,6 @@ function proceed() {
 	}
 
 	head.appendChild(style);
-
-	jQuery(function() {
-		function moveFloatMenu() {
-			var menuOffset = menuYloc.top + jQuery(this).scrollTop() + "px";
-			jQuery('#floatMenu').animate({
-				top: menuOffset
-			}, {
-				duration: 500,
-				queue: false
-			});
-		}
-
-		var menuYloc = jQuery('#floatMenu').offset();
-
-		jQuery(window).scroll(moveFloatMenu);
-
-		moveFloatMenu();
-	});
 
 	jQuery(function() {
 		jQuery('.subMenu').hide();
