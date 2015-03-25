@@ -245,121 +245,124 @@ function proceed() {
 
 		for (var i = 0; i < arrayOfMaps.length; i++) {
 			var map = arrayOfMaps[i];
-			var temp = [];
+			var install = [];
+			var supportPolicy = [];
+			var troubleShoot = [];
+
 			switch (i) {
 				case 0:
 					if (appServer in map) {
 						if (map[appServer][0] !== null) {
 							if (appServer == 'Websphere') {
 								if (dataArray[2].indexOf('8.5')) {
-									temp.link = map[appServer][0][0];
-									temp.name = dataArray[2];
-									installationLinks[installationLinks.length] = temp;
+									install.link = map[appServer][0][0];
+									install.name = dataArray[2];
+									installationLinks[installationLinks.length] = install;
 								} else {
-									temp.link = map[appServer][0][1];
-									temp.name = dataArray[2];
-									installationLinks[installationLinks.length] = temp;
+									install.link = map[appServer][0][1];
+									install.name = dataArray[2];
+									installationLinks[installationLinks.length] = install;
 								}
 							} else if (appServer == 'Weblogic') {
 								if (dataArray[2].indexOf('12')) {
-									temp.link = map[appServer][0][0];
-									temp.name = dataArray[2];
-									installationLinks[installationLinks.length] = temp;
+									install.link = map[appServer][0][0];
+									install.name = dataArray[2];
+									installationLinks[installationLinks.length] = install;
 								} else {
-									temp.link = map[appServer][0][1];
-									temp.name = dataArray[2];
-									installationLinks[installationLinks.length] = temp;
+									install.link = map[appServer][0][1];
+									install.name = dataArray[2];
+									installationLinks[installationLinks.length] = install;
 								}
 							} else {
-								temp.link = map[appServer][0];
-								temp.name = dataArray[2];
-								installationLinks[installationLinks.length] = temp;
+								install.link = map[appServer][0];
+								install.name = dataArray[2];
+								installationLinks[installationLinks.length] = install;
 							}
 						}
 						if (map[appServer][1] !== null) {
-							temp.link = map[appServer][1];
-							temp.name = dataArray[2];
-							supportPolicyLinks[supportPolicyLinks.length] = temp;
+							supportPolicy.link = map[appServer][1];
+							supportPolicy.name = dataArray[2];
+							supportPolicyLinks[supportPolicyLinks.length] = supportPolicy;
 						}
 						if (map[appServer][2] !== null) {
-							temp.link = map[appServer][2];
-							temp.name = dataArray[2];
-							troubleshootingLinks[troubleshootingLinks.length] = temp;
+							troubleShoot.link = map[appServer][2];
+							troubleShoot.name = dataArray[2];
+							troubleshootingLinks[troubleshootingLinks.length] = troubleShoot;
 						}
 					}
 					break;
 				case 1:
 					if (browser in map) {
 						if (map[browser][0] !== null) {
-							temp.link = map[browser][0];
-							temp.name = dataArray[4];
-							supportPolicyLinks[supportPolicyLinks.length] = temp;
+							supportPolicy.link = map[browser][0];
+							supportPolicy.name = dataArray[4];
+							supportPolicyLinks[supportPolicyLinks.length] = supportPolicy;
 						}
 						if (map[browser][1] !== null) {
-							temp.link = map[browser][1];
-							temp.name = dataArray[4];
-							troubleshootingLinks[troubleshootingLinks.length] = temp;
+							troubleShoot.link = map[browser][1];
+							troubleShoot.name = dataArray[4];
+							troubleshootingLinks[troubleshootingLinks.length] = troubleShoot;
 						}
 					}
 					break;
 				case 2:
 					if (component in map) {
 						if (map[component][0] !== null) {
-							temp.link = map[component][0];
-							temp.name = dataArray[6];
-							installationLinks[installationLinks.length] = temp;
+							install.link = map[component][0];
+							install.name = dataArray[6];
+							installationLinks[installationLinks.length] = install;
 						}
 						if (map[component][1] !== null) {
-							temp.link = map[component][1];
-							temp.name = dataArray[6];
-							supportPolicyLinks[supportPolicyLinks.length] = temp;
+							supportPolicy.link = map[component][1];
+							supportPolicy.name = dataArray[6];
+							supportPolicyLinks[supportPolicyLinks.length] = supportPolicy;
 						}
 						if (map[component][2] !== null) {
-							temp.link = map[component][2];
-							temp.name = dataArray[6];
-							troubleshootingLinks[troubleshootingLinks.length] = temp;
+							troubleShoot.link = map[component][2];
+							troubleShoot.name = dataArray[6];
+							troubleshootingLinks[troubleshootingLinks.length] = troubleShoot;
 						}
 					}
 					break;
 				case 3:
 					if (db in map) {
 						if (map[db][0] !== null) {
-							temp.link = map[db][0];
-							temp.name = dataArray[3];
-							supportPolicyLinks[supportPolicyLinks.length] = temp;
+							supportPolicy.link = map[db][0];
+							supportPolicy.name = dataArray[3];
+							supportPolicyLinks[supportPolicyLinks.length] = supportPolicy;
 						}
 						if (map[db][1] !== null) {
 							temp.link = map[db][1];
 							temp.name = dataArray[3];
-							troubleshootingLinks[troubleshootingLinks.length] = temp;
+							troubleshootingLinks[troubleshootingLinks.length] = troubleShoot;
 						}
 					}
 					break;
 				case 4:
 					if (java in map) {
 						if (map[java][0] !== null) {
-							temp.link = map[java][1];
-							temp.name = dataArray[5];
-							supportPolicyLinks[supportPolicyLinks.length] = temp;
+							supportPolicy.link = map[java][1];
+							supportPolicy.name = dataArray[5];
+							supportPolicyLinks[supportPolicyLinks.length] = supportPolicy;
 						}
 						if (map[java][1] !== null) {
-							temp.link = map[java][1];
-							temp.name = dataArray[5];
-							troubleshootingLinks[troubleshootingLinks.length] = temp;
+							troubleShoot.link = map[java][1];
+							troubleShoot.name = dataArray[5];
+							troubleshootingLinks[troubleshootingLinks.length] = troubleShoot;
 						}
 					}
 					break;
 				case 5:
 					if (os in map) {
 						if (map[os][0] !== null) {
-							temp.link = map[os][0];
-							temp.name = dataArray[1];
-							supportPolicyLinks[supportPolicyLinks.length] = temp;
+							supportPolicy.link = map[os][0];
+							supportPolicy.name = dataArray[1];
+							supportPolicyLinks[supportPolicyLinks.length] = supportPolicy;
 						}
 						if (map[os][1] !== null) {
-							temp.link = map[os][1];
-							temp.name = dataArray[1];
-							troubleshootingLinks[troubleshootingLinks.length] = temp;
+							troubleShoot.link = map[os][1];
+							troubleShoot.name = dataArray[1];
+							troubleshootingLinks[troubleshootingLinks.length] = troubleShoot;
 						}
 					}
 					break;
