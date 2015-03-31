@@ -95,7 +95,7 @@ function proceed() {
 	var h3 = document.createElement('h3');
 
 	h3.className = 'menuHeader';
-	h3.innerHTML = "Next Steps";
+	h3.innerHTML = "Quick Links";
 
 	floatMenu.appendChild(h3);
 
@@ -168,7 +168,6 @@ function proceed() {
 	});
 
 	jQuery(function() {
-		jQuery('.menuList').hide();
 		jQuery('.menuHeader').click(function() {
 			jQuery('.subMenu').hide();
 			jQuery('.menuList').slideToggle(500);
