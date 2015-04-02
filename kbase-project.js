@@ -169,7 +169,6 @@ function proceed() {
 	head.appendChild(style);
 
 	jQuery(function() {
-		jQuery('.subMenu').hide();
 		jQuery('.menuItem').click(function() {
 			$menuItem = jQuery(this);
 			$subMenu = $menuItem.next();
