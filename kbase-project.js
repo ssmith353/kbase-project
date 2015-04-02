@@ -12,7 +12,7 @@ function proceed() {
 	getLinks();
 	floatMenu.id = "floatMenu";
 
-	for (var i = 0; i < 4; i++) {
+	for (var i = 0; i < 5; i++) {
 		outterDiv[i] = document.createElement('div');
 
 		menuItem[i] = document.createElement('div');
@@ -24,7 +24,6 @@ function proceed() {
 
 		var a;
 		var li;
-
 		var link = '';
 		var linkText = '';
 		switch (i) {
@@ -78,6 +77,17 @@ function proceed() {
 					subMenu[i].appendChild(li);
 				}
 				break;
+			case 4:
+				for (var j = 0; j < supportForumsLinks.length; j++) {
+					a = document.createElement('a');
+					a.href = supportForumsLinks[j].link;
+					a.text = supportForumsLinks[j].name;
+					a.target = '_blank';
+					li = document.createElement('li');
+					li.appendChild(a);
+					subMenu[i].appendChild(li);
+				}
+				break;
 		}
 
 		outterDiv[i].appendChild(menuItem[i]);
@@ -88,7 +98,7 @@ function proceed() {
 
 	listDiv.className = "menuList";
 
-	for (i = 0; i < 4; i++) {
+	for (i = 0; i < 5; i++) {
 		listDiv.appendChild(outterDiv[i]);
 	}
 
@@ -229,6 +239,7 @@ function proceed() {
 			var install = [];
 			var supportPolicy = [];
 			var troubleShoot = [];
+			var supportForums = [];
 
 			switch (i) {
 				case 0:
@@ -303,6 +314,16 @@ function proceed() {
 							troubleShoot.name = dataArray[6];
 							troubleshootingLinks[troubleshootingLinks.length] = troubleShoot;
 						}
+						if(map[component][3] !== null) {
+							supportForums.link = map[component][3];
+							supportForums.name = dataArray[6];
+							supportForums.noLink = false;
+							supportForumsLinks[supportForumsLinks.length] = supportForums;
+						} else {
+							supportForums.link = 'https://in.liferay.com/web/support/forums/-/message_boards/category/922867';
+							supportForums.name = 'Support Forums';
+							supportForumsLinks[supportForumsLinks.length] = supportForums;
+						}
 					}
 					break;
 				case 3:
@@ -313,8 +334,8 @@ function proceed() {
 							supportPolicyLinks[supportPolicyLinks.length] = supportPolicy;
 						}
 						if (map[db][1] !== null) {
-							temp.link = map[db][1];
-							temp.name = dataArray[3];
+							troubleShoot.link = map[db][1];
+							troubleShoot.name = dataArray[3];
 							troubleshootingLinks[troubleshootingLinks.length] = troubleShoot;
 						}
 					}
@@ -386,8 +407,8 @@ function addLinksToArrays() {
 	componentMap['Portal Deployment'] = ['https://dev.liferay.com/discover/deployment', null, 'https://www.liferay.com/group/customer/knowledge/kb/-/knowledge_base/article/30485351', null];
 	componentMap['Search/Indexing'] = [null, null, 'https://www.liferay.com/group/customer/knowledge/kb/-/knowledge_base/article/30485451', null];
 	componentMap['Security'] = [null, null, 'https://www.liferay.com/group/customer/knowledge/kb/-/knowledge_base/article/30485588', null];
-	componentMap['UI'] = [null, null, 'https://www.liferay.com/group/customer/knowledge/kb/-/knowledge_base/article/30485627', null, 'https://in.liferay.com/web/support/forums/-/message_boards/category/4534053'];
-	componentMap['Upgrade'] = [null, null, 'https://www.liferay.com/group/customer/knowledge/kb/-/knowledge_base/article/30485671', null, 'https://in.liferay.com/web/support/forums/-/message_boards/category/4698362'];
+	componentMap['UI'] = [null, null, 'https://www.liferay.com/group/customer/knowledge/kb/-/knowledge_base/article/30485627', 'https://in.liferay.com/web/support/forums/-/message_boards/category/4534053'];
+	componentMap['Upgrade'] = [null, null, 'https://www.liferay.com/group/customer/knowledge/kb/-/knowledge_base/article/30485671', 'https://in.liferay.com/web/support/forums/-/message_boards/category/4698362'];
 	componentMap['Web Content Management'] = ['https://dev.liferay.com/discover/portal/-/knowledge_base/6-2/web-content-management', null, 'https://www.liferay.com/group/customer/knowledge/kb/-/knowledge_base/article/30485750', 'https://in.liferay.com/web/support/forums/-/message_boards/category/4697774'];
 	componentMap['Workflows/Forms'] = [null, null, null, null];
 
@@ -437,7 +458,8 @@ var arrayOfMaps = [appServerMap, browserMap, componentMap, databaseMap, javaMap,
 
 var supportPolicyLinks = [],
 	installationLinks = [],
-	troubleshootingLinks = [];
+	troubleshootingLinks = [],
+	supportForumsLinks = [];
 
 var applicationServerText = "APPLICATION SERVER: ";
 var componentText = "COMPONENT: ";
@@ -457,5 +479,6 @@ var categoryNames = [
 	"Compatibiltiy Matrix",
 	"Support Policies",
 	"Installation",
-	"Troubleshooting"
+	"Troubleshooting",
+	"Product Support Forums"
 ];
