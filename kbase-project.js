@@ -214,7 +214,7 @@ function proceed() {
 						var end = version.indexOf('  ');
 						if ((serverInfo == opSystemText) || (serverInfo == browserText) || (serverInfo == javaText)) {
 							end = version.indexOf('  ') + begin;
-						} else if(serverInfo == componentText) {
+						} else if (serverInfo == componentText) {
 							end = version.indexOf('   ');
 						}
 						version = version.substring(begin, end);
@@ -363,7 +363,7 @@ function proceed() {
 							troubleShoot.name = dataArray[6];
 							troubleshootingLinks[troubleshootingLinks.length] = troubleShoot;
 						}
-						if(map[component][3] !== null) {
+						if (map[component][3] !== null) {
 							supportForums.link = map[component][3];
 							supportForums.name = dataArray[6];
 							supportForums.noLink = false;
@@ -427,9 +427,13 @@ function proceed() {
 }
 
 function addLinksToArrays() {
-	appServerMap['Websphere'] = [['https://dev.liferay.com/discover/deployment/-/knowledge_base/6-2/installing-liferay-on-websphere-8-5', 'https://dev.liferay.com/discover/portal/-/knowledge_base/6-1/installing-liferay-on-websphere-8-0'], 'https://support-kb.liferay.com/web/knowledge/knowledge-base/-/knowledge_base/article/31534', null];
+	appServerMap['Websphere'] = [
+		['https://dev.liferay.com/discover/deployment/-/knowledge_base/6-2/installing-liferay-on-websphere-8-5', 'https://dev.liferay.com/discover/portal/-/knowledge_base/6-1/installing-liferay-on-websphere-8-0'], 'https://support-kb.liferay.com/web/knowledge/knowledge-base/-/knowledge_base/article/31534', null
+	];
 	appServerMap['Tomcat'] = ['https://dev.liferay.com/discover/deployment/-/knowledge_base/6-2/installing-liferay-on-tomcat-7', 'https://support-kb.liferay.com/web/knowledge/knowledge-base/-/knowledge_base/article/31522', null];
-	appServerMap['Weblogic'] = [['https://dev.liferay.com/discover/deployment/-/knowledge_base/6-2/installing-liferay-on-oracle-weblogic-12c-12-1-2-and-h', 'https://dev.liferay.com/discover/portal/-/knowledge_base/6-1/installing-liferay-on-oracle-weblogic-10-3', 'https://dev.liferay.com/discover/portal/-/knowledge_base/6-1/installing-liferay-on-weblogic-10'], null, null];
+	appServerMap['Weblogic'] = [
+		['https://dev.liferay.com/discover/deployment/-/knowledge_base/6-2/installing-liferay-on-oracle-weblogic-12c-12-1-2-and-h', 'https://dev.liferay.com/discover/portal/-/knowledge_base/6-1/installing-liferay-on-oracle-weblogic-10-3', 'https://dev.liferay.com/discover/portal/-/knowledge_base/6-1/installing-liferay-on-weblogic-10'], null, null
+	];
 	appServerMap['JBoss'] = ['https://dev.liferay.com/discover/deployment/-/knowledge_base/6-2/installing-liferay-on-jboss-7-1', 'https://support-kb.liferay.com/web/knowledge/knowledge-base/-/knowledge_base/article/31960', null];
 	appServerMap['Tcat'] = ['https://dev.liferay.com/discover/deployment/-/knowledge_base/6-2/installing-liferay-on-mulesoft-tcat', 'https://support-kb.liferay.com/web/knowledge/knowledge-base/-/knowledge_base/article/32064', null];
 	appServerMap['Glassfish'] = ['https://dev.liferay.com/discover/deployment/-/knowledge_base/6-2/installing-liferay-on-glassfish-4', 'https://support-kb.liferay.com/web/knowledge/knowledge-base/-/knowledge_base/article/31320', null];
@@ -539,5 +543,5 @@ var categoryNames = [
 	"Troubleshooting",
 	"Product Support Forums",
 	"Latest Customer Fixes"
-	
+
 ];
